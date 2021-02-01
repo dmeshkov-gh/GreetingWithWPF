@@ -83,6 +83,13 @@ namespace CompanyProj
 
         private void TransferEmployee_btn_Click(object sender, RoutedEventArgs e)
         {
+            //Department selectedDepartment = (Department)listDepartments.SelectedItem;
+            //Employee selectedEmployee = (Employee)listEmployees.SelectedItem;
+
+            //DepartmentWindow departmentWindow = new DepartmentWindow(departments, selectedEmployee);
+            //departmentWindow.Show();
+
+            //selectedDepartment?.Employees.Remove(selectedEmployee);
         }
     }
 }
