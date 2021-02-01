@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <ComboBox x:Name="listDepartments" HorizontalAlignment="Left" Margin="22,69,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="listDepartments_SelectionChanged"/>
+        <ListView x:Name="listEmployees" Margin="171,69,273,189"/>
+        <Button x:Name="AddEmployee_btn" Content="Add Employee" HorizontalAlignment="Left" Margin="22,110,0,0" VerticalAlignment="Top" Height="22" Width="120" Click="AddEmployee_btn_Click"/>
+        <Button x:Name="RemoveEmployee_btn" Content="Remove Employee" HorizontalAlignment="Left" Margin="22,152,0,0" VerticalAlignment="Top" Height="22" Width="120" Click="RemoveEmployee_btn_Click"/>
 
     </Grid>
 </Window>

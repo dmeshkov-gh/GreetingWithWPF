@@ -17,5 +17,10 @@ namespace CompanyProj
             Age = age;
             Salary = salary;
         }
+
+        public override string ToString()
+        {
+            return $"Name: {Name} {LastName}, Age: {Age}, Salary: {Salary}";
+        }
     }
 }
