@@ -23,8 +23,8 @@ namespace CompanyProj
         Random r = new Random();
         List<Department> departments = new List<Department>();
 
-        string[] names = new string[] { "Dmitry", "Ivan", "Pavel", "Sergey", "Alex" };
-        string[] lastNames = new string[] { "Ivanov", "Petrov", "Sergeev", "Pustovoy", "Markov", "Stepanov" };
+        string[] names = new string[] { "Dmitry", "Ivan", "Pavel", "Sergey", "Alex", "Leo", "Petr" };
+        string[] lastNames = new string[] { "Ivanov", "Petrov", "Sergeev", "Pustovoy", "Markov", "Stepanov", "Grigoriev", "Meshkov", "Danilov" };
 
         public MainWindow()
         {
@@ -52,14 +52,14 @@ namespace CompanyProj
 
         private void listDepartments_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedDepartment = departments.Where(x => x == listDepartments.SelectedItem).FirstOrDefault();
-            listEmployees.ItemsSource = selectedDepartment.Employees;
+            var selectedDepartment = departments?.Where(x => x == listDepartments.SelectedItem).FirstOrDefault();
+            listEmployees.ItemsSource = selectedDepartment?.Employees;
         }
 
         private void AddEmployee_btn_Click(object sender, RoutedEventArgs e)
         {
             Department selectedDepartment = (Department)listDepartments.SelectedItem;
-            selectedDepartment.Employees.Add(new Employee(names[r.Next(0, names.Length)], lastNames[r.Next(0, lastNames.Length)],
+            selectedDepartment?.Employees.Add(new Employee(names[r.Next(0, names.Length)], lastNames[r.Next(0, lastNames.Length)],
                         r.Next(18, 51), r.Next(5000, 10000)));
         }
 
@@ -67,7 +67,7 @@ namespace CompanyProj
         {
             Department selectedDepartment = (Department)listDepartments.SelectedItem;
             Employee selectedEmployee = (Employee)listEmployees.SelectedItem;
-            selectedDepartment.Employees.Remove(selectedEmployee);
+            selectedDepartment?.Employees.Remove(selectedEmployee);
         }
 
         private void Update()
@@ -76,6 +76,13 @@ namespace CompanyProj
                 listEmployees.ItemsSource = department.Employees;
         }
 
+        private void AddDepartment_btn_Click(object sender, RoutedEventArgs e)
+        {
+            departments.Add(new Department($"Departament # {departments.Count + 1}"));
+        }
 
+        private void TransferEmployee_btn_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
