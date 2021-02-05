@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompanyProj"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="360" Width="504">
+    <Grid Margin="0,0,0,10">
+        <ComboBox x:Name="listDepartments" HorizontalAlignment="Left" Margin="22,69,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="listDepartments_SelectionChanged" IsEditable="True"/>
+        <ListView x:Name="listEmployees" Margin="171,69,63,31"/>
+        <Button x:Name="AddEmployee_btn" Content="Add Employee" HorizontalAlignment="Left" Margin="22,110,0,0" VerticalAlignment="Top" Height="22" Width="120" Click="AddEmployee_btn_Click"/>
+        <Button x:Name="RemoveEmployee_btn" Content="Remove Employee" HorizontalAlignment="Left" Margin="22,152,0,0" VerticalAlignment="Top" Height="22" Width="120" Click="RemoveEmployee_btn_Click"/>
+        <Button x:Name="AddDepartment_btn" Content="Add Department" HorizontalAlignment="Left" Margin="22,231,0,0" VerticalAlignment="Top" Height="22" Width="120" Click="AddDepartment_btn_Click"/>
+        <Button x:Name="TransferEmployee_btn" Content="Transfer Employee" HorizontalAlignment="Left" Margin="22,186,0,0" VerticalAlignment="Top" Height="22" Width="120" Click="TransferEmployee_btn_Click"/>
 
     </Grid>
 </Window>
