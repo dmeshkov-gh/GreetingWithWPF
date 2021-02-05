@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CompanyProj
+namespace CompanyProj.Models
 {
     class Department
     {
@@ -10,6 +10,10 @@ namespace CompanyProj
         public string Name { get; set; }
         public List<Employee> Employees { get => employees; set => employees = value; }
 
+        public Department()
+        {
+
+        }
         public Department(string name)
         {
             Name = name;

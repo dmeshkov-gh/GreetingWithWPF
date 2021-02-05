@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompanyProj.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,18 +35,21 @@ namespace CompanyProj
 
         private void CreateDepartments()
         {
-            
-            int numberOfDepartments = 5;
-            for (int i = 0; i < numberOfDepartments; ++i)
-            {
-                departments.Add(new Department($"Departament # {i + 1}"));
-                int numberOfEmployees = 3;
-                for (int j = 0; j < numberOfEmployees; ++j)
+            departments = Enumerable.Range(1, 5)
+                .Select(d => new Department
                 {
-                    departments[i].Employees.Add(new Employee(names[r.Next(0, names.Length)], lastNames[r.Next(0, lastNames.Length)],
-                        r.Next(18, 51), r.Next(5000, 10000)));
-                }
-            }
+                    Name = $"Departament # {d}",
+                    Employees = Enumerable.Range(1, 3)
+                        .Select(e => new Employee
+                        {
+                            Name = names[r.Next(0, names.Length)],
+                            LastName = lastNames[r.Next(0, lastNames.Length)],
+                            Age = r.Next(18, 51),
+                            Salary = r.Next(5000, 10000),
+                        })
+                        .ToList()
+                })
+                .ToList();
 
             listDepartments.ItemsSource = departments;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompanyProj.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
