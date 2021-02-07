@@ -3,16 +3,79 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:CompanyProj.ViewModels"
         xmlns:local="clr-namespace:CompanyProj"
         mc:Ignorable="d"
-        Title="MainWindow" Height="360" Width="504">
-    <Grid Margin="0,0,0,10">
-        <ComboBox x:Name="listDepartments" HorizontalAlignment="Left" Margin="22,69,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="listDepartments_SelectionChanged" IsEditable="True"/>
-        <ListView x:Name="listEmployees" Margin="171,69,63,31"/>
-        <Button x:Name="AddEmployee_btn" Content="Add Employee" HorizontalAlignment="Left" Margin="22,110,0,0" VerticalAlignment="Top" Height="22" Width="120" Click="AddEmployee_btn_Click"/>
-        <Button x:Name="RemoveEmployee_btn" Content="Remove Employee" HorizontalAlignment="Left" Margin="22,152,0,0" VerticalAlignment="Top" Height="22" Width="120" Click="RemoveEmployee_btn_Click"/>
-        <Button x:Name="AddDepartment_btn" Content="Add Department" HorizontalAlignment="Left" Margin="22,231,0,0" VerticalAlignment="Top" Height="22" Width="120" Click="AddDepartment_btn_Click"/>
-        <Button x:Name="TransferEmployee_btn" Content="Transfer Employee" HorizontalAlignment="Left" Margin="22,186,0,0" VerticalAlignment="Top" Height="22" Width="120" Click="TransferEmployee_btn_Click"/>
-
+        Title="MainWindow" Height="450" Width="600">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Column="0" Header ="Departments">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ComboBox Grid.Row ="0" x:Name="Departments" ItemsSource="{Binding Departments}" SelectedIndex="0" 
+                          DisplayMemberPath="Name" 
+                          HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" 
+                          Height ="25" Width="120"/>
+                <GroupBox Grid.Row ="1" Header ="Actions">
+                    <StackPanel>
+                        <Button x:Name="AddEmployee_btn" Content="Add Employee" 
+                                HorizontalAlignment="Center" VerticalAlignment="Top" Margin ="5" 
+                                Height="22" Width="120" Click="OnAddEmployeeClick"/>
+                        <Button x:Name="RemoveEmployee_btn" Content="Remove Employee" 
+                                HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" 
+                                Height="22" Width="120"/>
+                        <Button x:Name="AddDepartment_btn" Content="Add Department" 
+                                HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" 
+                                Height="22" Width="120" Click="AddDepartment_btn_Click"/>
+                        <Button x:Name="TransferEmployee_btn" Content="Transfer Employee" 
+                                HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" 
+                                Height="22" Width="120"/>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Employees">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ListView Grid.Row="0" x:Name="Employees" Margin="5" 
+                          ItemsSource="{Binding SelectedItem.Employees, ElementName=Departments}"/>
+                <GroupBox Grid.Row="1" Header="Selected Employee" DataContext ="{Binding SelectedItem, ElementName=Employees}">
+                    <StackPanel Margin="10">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Name:" Width="70"/>
+                            <TextBox Width="200" Text="{Binding Name}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Last name:" Width="70"/>
+                            <TextBox Width="200" Text="{Binding LastName}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Age:" Width="70"/>
+                            <TextBox Width="200" Text="{Binding Age}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Salary:" Width="70"/>
+                            <TextBox Width="200" Text="{Binding Salary}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Department:" Width="70"/>
+                            <ComboBox Width="200" ItemsSource="{Binding Department}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
