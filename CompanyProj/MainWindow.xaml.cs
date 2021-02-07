@@ -37,27 +37,21 @@ namespace CompanyProj
         {
             var model = (MainWindowViewModel)DataContext;
 
-            model.Departments.Add(new Department
-            {
-                Name = $"Departament # {model.Departments.Count + 1}"
-            });
+            model.AddNewDepartment();
         }
 
         private void RemoveDepartment_Click(object sender, RoutedEventArgs e)
         {
             var model = (MainWindowViewModel)DataContext;
 
-            var selected_department = (Department)Departments.SelectedItem;
-            if (selected_department is null) return;
-
-            model.Departments.Remove(selected_department);
+            model.RemoveSelectedDepartment();
         }
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             var model = (MainWindowViewModel)DataContext;
 
-            
+
         }
 
     }

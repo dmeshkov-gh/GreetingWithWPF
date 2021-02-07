@@ -4,13 +4,40 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace CompanyProj.ViewModels
 {
 
-    class MainWindowViewModel
+    class MainWindowViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private Department _selectedDepartment;
+        private Employee _selectedEmployee;
         public ObservableCollection<Department> Departments { get; set; }
+
+        public Department SelectedDepartment
+        {
+            get => _selectedDepartment;
+            set
+            {
+                _selectedDepartment = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedDepartment"));
+
+                SelectedEmployee = null;
+            }
+        }
+
+        public Employee SelectedEmployee
+        {
+            get => _selectedEmployee;
+            set
+            {
+                _selectedEmployee = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedEmployee"));
+            }
+        }
 
         string[] names = new string[] { "Dmitry", "Ivan", "Pavel", "Sergey", "Alex", "Leo", "Petr" };
         string[] lastNames = new string[] { "Ivanov", "Petrov", "Sergeev", "Pustovoy", "Markov", "Stepanov", "Grigoriev", "Meshkov", "Danilov" };
@@ -35,6 +62,23 @@ namespace CompanyProj.ViewModels
                 .ToList();
 
             Departments = new(departments);
+        }
+
+        public void AddNewDepartment()
+        {
+            var department = new Department
+            {
+                Name = $"Departament # {Departments.Count + 1}"
+            };
+            Departments.Add(department);
+            SelectedDepartment = department;
+        }
+
+        public void RemoveSelectedDepartment()
+        {
+            if (SelectedDepartment is null) return;
+            Departments.Remove(SelectedDepartment);
+            SelectedDepartment = null;
         }
     }
 }

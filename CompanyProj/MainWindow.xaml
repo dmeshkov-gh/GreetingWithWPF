@@ -6,7 +6,9 @@
         xmlns:vm="clr-namespace:CompanyProj.ViewModels"
         xmlns:local="clr-namespace:CompanyProj"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
+        Title="{Binding SelectedDepartment.Name}" 
+        Height="450" 
+        Width="600" >
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -22,7 +24,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <ComboBox Grid.Row ="0" x:Name="Departments" ItemsSource="{Binding Departments}" SelectedIndex="0" 
-                          DisplayMemberPath="Name" 
+                          DisplayMemberPath="Name" SelectedItem="{Binding SelectedDepartment}"
                           HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" 
                           Height ="25" Width="120"/>
                 <GroupBox Grid.Row ="1" Header ="Actions">
@@ -49,9 +51,11 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <ListView Grid.Row="0" x:Name="EmployeesList" Margin="5" 
-                          ItemsSource="{Binding SelectedItem.Employees, ElementName=Departments}"/>
-                <GroupBox Grid.Row="1" Header="Selected Employee" DataContext ="{Binding SelectedItem, ElementName=EmployeesList}">
+                <!--<ListView Grid.Row="0" x:Name="EmployeesList" Margin="5" SelectedItem="{Binding SelectedEmployee}"
+                          ItemsSource="{Binding SelectedItem.Employees, ElementName=Departments}"/>-->
+                <ListView Grid.Row="0" x:Name="EmployeesList" Margin="5" SelectedItem="{Binding SelectedEmployee}"
+                          ItemsSource="{Binding SelectedDepartment.Employees}"/>
+                <GroupBox Grid.Row="1" Header="Selected Employee" DataContext ="{Binding SelectedEmployee}">
                     <StackPanel Margin="10">
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <TextBlock Text="Name:" Width="70"/>
