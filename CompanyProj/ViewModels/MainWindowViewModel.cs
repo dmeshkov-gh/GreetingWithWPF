@@ -56,6 +56,7 @@ namespace CompanyProj.ViewModels
                             LastName = lastNames[r.Next(0, lastNames.Length)],
                             Age = r.Next(18, 51),
                             Salary = r.Next(5000, 10000),
+                            Department = SelectedDepartment
                         })
                         .ToList())
                 })

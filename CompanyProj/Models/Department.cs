@@ -7,7 +7,6 @@ namespace CompanyProj.Models
 {
     class Department
     {
-        private List<Employee> employees = new List<Employee>();
         public string Name { get; set; }
         public ObservableCollection<Employee> Employees { get; set; } = new();
 
