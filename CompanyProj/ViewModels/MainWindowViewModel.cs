@@ -49,7 +49,7 @@ namespace CompanyProj.ViewModels
                 .Select(d => new Department
                 {
                     Name = $"Departament # {d}",
-                    Employees = Enumerable.Range(1, 3)
+                    Employees = new(Enumerable.Range(1, 3)
                         .Select(e => new Employee
                         {
                             Name = names[r.Next(0, names.Length)],
@@ -57,7 +57,7 @@ namespace CompanyProj.ViewModels
                             Age = r.Next(18, 51),
                             Salary = r.Next(5000, 10000),
                         })
-                        .ToList()
+                        .ToList())
                 })
                 .ToList();
 

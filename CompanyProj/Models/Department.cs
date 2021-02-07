@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace CompanyProj.Models
@@ -8,7 +9,7 @@ namespace CompanyProj.Models
     {
         private List<Employee> employees = new List<Employee>();
         public string Name { get; set; }
-        public List<Employee> Employees { get => employees; set => employees = value; }
+        public ObservableCollection<Employee> Employees { get; set; } = new();
 
         public Department()
         {
