@@ -33,25 +33,7 @@ namespace CompanyProj
             InitializeComponent();
         }
 
-        //private void OnAddEmployee(object sender, RoutedEventArgs e)
-        //{
-        //    Department selectedDepartment = (Department)listDepartments.SelectedItem;
-        //    selectedDepartment?.Employees.Add(new Employee(names[r.Next(0, names.Length)], lastNames[r.Next(0, lastNames.Length)],
-        //                r.Next(18, 51), r.Next(5000, 10000)));
-        //}
-
-        private void OnAddEmployeeClick(object sender, RoutedEventArgs e)
-        {      
-        }
-
-        //private void RemoveEmployee_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Department selectedDepartment = (Department)listDepartments.SelectedItem;
-        //    Employee selectedEmployee = (Employee)listEmployees.SelectedItem;
-        //    selectedDepartment?.Employees.Remove(selectedEmployee);
-        //}
-
-        private void AddDepartment_btn_Click(object sender, RoutedEventArgs e)
+        private void AddDepartment_Click(object sender, RoutedEventArgs e)
         {
             var model = (MainWindowViewModel)DataContext;
 
@@ -61,15 +43,22 @@ namespace CompanyProj
             });
         }
 
-        //private void TransferEmployee_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //Department selectedDepartment = (Department)listDepartments.SelectedItem;
-        //Employee selectedEmployee = (Employee)listEmployees.SelectedItem;
+        private void RemoveDepartment_Click(object sender, RoutedEventArgs e)
+        {
+            var model = (MainWindowViewModel)DataContext;
 
-        //DepartmentWindow departmentWindow = new DepartmentWindow(departments, selectedEmployee);
-        //departmentWindow.Show();
+            var selected_department = (Department)Departments.SelectedItem;
+            if (selected_department is null) return;
 
-        //selectedDepartment?.Employees.Remove(selectedEmployee);
-        //}
+            model.Departments.Remove(selected_department);
+        }
+
+        private void AddEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            var model = (MainWindowViewModel)DataContext;
+
+            
+        }
+
     }
 }

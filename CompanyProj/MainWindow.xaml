@@ -27,18 +27,18 @@
                           Height ="25" Width="120"/>
                 <GroupBox Grid.Row ="1" Header ="Actions">
                     <StackPanel>
-                        <Button x:Name="AddEmployee_btn" Content="Add Employee" 
+                        <Button x:Name="AddEmployee" Content="Add Employee" 
                                 HorizontalAlignment="Center" VerticalAlignment="Top" Margin ="5" 
-                                Height="22" Width="120" Click="OnAddEmployeeClick"/>
-                        <Button x:Name="RemoveEmployee_btn" Content="Remove Employee" 
+                                Height="22" Width="120" Click="AddEmployee_Click"/>
+                        <Button x:Name="RemoveEmployee" Content="Remove Employee" 
                                 HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" 
                                 Height="22" Width="120"/>
-                        <Button x:Name="AddDepartment_btn" Content="Add Department" 
+                        <Button x:Name="AddDepartment" Content="Add Department" 
                                 HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" 
-                                Height="22" Width="120" Click="AddDepartment_btn_Click"/>
-                        <Button x:Name="TransferEmployee_btn" Content="Transfer Employee" 
+                                Height="22" Width="120" Click="AddDepartment_Click"/>
+                        <Button x:Name="RemoveDepartment" Content="Remove Department" 
                                 HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" 
-                                Height="22" Width="120"/>
+                                Height="22" Width="120" Click="RemoveDepartment_Click"/>
                     </StackPanel>
                 </GroupBox>
             </Grid>
@@ -49,9 +49,9 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <ListView Grid.Row="0" x:Name="Employees" Margin="5" 
+                <ListView Grid.Row="0" x:Name="EmployeesList" Margin="5" 
                           ItemsSource="{Binding SelectedItem.Employees, ElementName=Departments}"/>
-                <GroupBox Grid.Row="1" Header="Selected Employee" DataContext ="{Binding SelectedItem, ElementName=Employees}">
+                <GroupBox Grid.Row="1" Header="Selected Employee" DataContext ="{Binding SelectedItem, ElementName=EmployeesList}">
                     <StackPanel Margin="10">
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <TextBlock Text="Name:" Width="70"/>
